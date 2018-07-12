@@ -27,5 +27,4 @@ while True:
 		pos = "sell"
 	else:
 		pos = "buy"
-	break
 	time.sleep(60)
