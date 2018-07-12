@@ -3,17 +3,24 @@
 
 import requests
 import time
+import json
 
-url = "http://chanz.jp/bots/insertForwardTest.php"
+url = "https://25b4v0hwdg.execute-api.us-east-2.amazonaws.com/development/sendPseudoOrder"
 
 pos = "buy"
 while True:
-	time.sleep(60)
 	s = requests.session()
-	params = {"user_id":"user_id2", "bot_id":"bot_id2", "market_name":"bitFlyer","position":pos}
+	params = {
+		"BotId": "ec2_local",
+  		"MarketName": "bitFlyer",
+ 	 	"Position": pos,
+  		"Product": "FX_BTC_JPY"
+	}
 	r =  s.post(url, data=params)
-	print(params)
+	print(json.dumps(params))
+	print(r)
 	if pos == "buy":
 		pos = "sell"
 	else:
 		pos = "buy"
+	time.sleep(60)
